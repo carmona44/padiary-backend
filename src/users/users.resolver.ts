@@ -1,10 +1,16 @@
 import { Query, Resolver } from "@nestjs/graphql";
+import { User } from "./users.entity";
+import { UsersService } from "./users.service";
 
-@Resolver()
+@Resolver(of => User)
 export class UsersResolver {
 
-  @Query(() => String)
-  sayHello(): string {
-    return 'Hello World!';
+  constructor(
+    private readonly usersService: UsersService,
+  ){}
+
+  @Query(() => [User])
+  async getAll(): Promise<User[]> {
+    return this.usersService.findAll();
   }
 }

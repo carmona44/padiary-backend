@@ -1,8 +1,5 @@
-import { Repository } from '@mikro-orm/core';
-import { EntityRepository } from '@mikro-orm/mongodb';
-import { Users } from './users.entity';
+import { Repository, EntityRepository } from '@mikro-orm/core';
+import { User } from './users.entity';
 
-@Repository(Users)
-export class UserRepository extends EntityRepository<Users> {
-
-}
+@Repository(User)
+export class UserRepository extends EntityRepository<User> {}

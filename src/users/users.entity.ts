@@ -1,35 +1,30 @@
-import {
-  Collection,
-  Entity,
-  EntityRepositoryType,
-  ManyToMany,
-  OneToMany,
-  PrimaryKey,
-  Property,
-  wrap,
-} from '@mikro-orm/core';
+import { Entity, EntityRepositoryType, PrimaryKey, Property, wrap } from '@mikro-orm/core';
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { ObjectId } from 'bson';
 import { UserRepository } from './users.repository';
 
-@Entity()
-export class Users {
+@ObjectType()
+@Entity({tableName: 'users'})
+export class User {
 
-  [EntityRepositoryType]?: UserRepository;
+    [EntityRepositoryType]?: UserRepository;
 
-  @PrimaryKey()
-  _id: ObjectId;
+    @Field(type => ID)
+    @PrimaryKey()
+    _id: ObjectId;
 
-  @Property()
-  username: string;
+    @Field()
+    @Property()
+    username: string;
 
-  constructor(username: string) {
-    this.username = username;
-  }
+    constructor(username: string) {
+        this.username = username;
+    }
+    
+    /*toJSON(user?: User) {
+        const o = wrap(this).toObject();
 
-  toJSON(user?: Users) {
-    const o = wrap(this).toObject();
-
-    return o;
-  }
+        return o;
+    }*/
 
 }

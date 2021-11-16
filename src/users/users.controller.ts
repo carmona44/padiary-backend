@@ -1,6 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { ObjectId } from 'bson';
-import { Users } from './users.entity';
+import { User } from './users.entity';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -11,12 +10,12 @@ export class UsersController {
     ) {}
 
     @Get()
-    async findAll(): Promise<Users[]> {
+    async findAll(): Promise<User[]> {
         return this.userService.findAll();
     }
 
     @Get(':id')
-    async findOneById(@Param('id') id: ObjectId): Promise<any> {
+    async findOneById(@Param('id') id: string): Promise<any> {
         return this.userService.findOneById(id);
     }
 }

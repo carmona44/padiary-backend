@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ObjectId } from 'bson';
-import { Users } from './users.entity';
+import { User } from './users.entity';
 import { UserRepository } from './users.repository';
 
 @Injectable()
@@ -10,12 +9,11 @@ export class UsersService {
         private readonly userRepository: UserRepository,
     ) {}
 
-    async findAll(): Promise<Users[]> { 
-        return this.userRepository.findAll();  
+    async findAll(): Promise<User[]> { 
+        return this.userRepository.findAll();
     }
 
-    async findOneById(_id: ObjectId): Promise<Users> { 
-        const user = await this.userRepository.findOne(_id);
-        return user;
+    async findOneById(id: string): Promise<User> { 
+        return await this.userRepository.findOne(id);
     }
 }
