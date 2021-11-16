@@ -8,5 +8,6 @@ type User {
 }
 
 type Query {
-  getAll: [User!]!
+  getAllUsers: [User!]!
+  getUserById(id: String!): User!
 }
