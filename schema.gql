@@ -11,3 +11,11 @@ type Query {
   getAllUsers: [User!]!
   getUserById(id: String!): User!
 }
+
+type Mutation {
+  addUser(newUserInput: NewUserInput!): User!
+}
+
+input NewUserInput {
+  username: String!
+}

@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { NewUserInput } from './dto/new-user.dto';
 import { User } from './users.entity';
 import { UserRepository } from './users.repository';
 
@@ -14,6 +15,14 @@ export class UsersService {
     }
 
     async findOneById(id: string): Promise<User> { 
-        return await this.userRepository.findOne(id);
+        return this.userRepository.findOne(id);
     }
+
+    async create(newUserInput: NewUserInput): Promise<User> {   
+        const { username } = newUserInput;
+        const newUser = new User(username);
+        await this.userRepository.persistAndFlush(newUser);
+        return newUser;
+    }
+
 }

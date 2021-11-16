@@ -21,10 +21,10 @@ export class User {
         this.username = username;
     }
     
-    /*toJSON(user?: User) {
+    toJSON(user?: User) {
         const o = wrap(this).toObject();
 
         return o;
-    }*/
+    }
 
 }
