@@ -4,7 +4,56 @@
 
 type User {
   _id: ID!
-  username: String!
+  name: String!
+  surname: String!
+  age: Int!
+  position: PlayerPosition!
+  level: PlayerLevel!
+  predominantHand: PlayerPredominantHand!
+  picture: String!
+  country: Country!
+  region: String!
+  bestShot: Shot!
+}
+
+enum PlayerPosition {
+  REVES
+  DRIVE
+}
+
+enum PlayerLevel {
+  PRO
+  PRIMERA
+  SEGUNDA
+  TERCERA
+  CUARTA
+  QUINTA
+}
+
+enum PlayerPredominantHand {
+  DERECHA
+  IZQUIERDA
+}
+
+enum Country {
+  SPAIN
+  ARGENTINA
+  SUECIA
+  FRANCIA
+  ITALIA
+  BRASIL
+  PORTUGAL
+}
+
+enum Shot {
+  REVES
+  DERECHA
+  VOLEA_DERECHA
+  VOLEA_REVES
+  BANDEJA
+  SMASH
+  DEJADA
+  SAQUE
 }
 
 type Query {
@@ -17,5 +66,14 @@ type Mutation {
 }
 
 input NewUserInput {
-  username: String!
+  name: String!
+  surname: String!
+  age: Float!
+  position: PlayerPosition!
+  level: PlayerLevel!
+  predominantHand: PlayerPredominantHand!
+  picture: String!
+  country: Country!
+  region: String!
+  bestShot: Shot!
 }
