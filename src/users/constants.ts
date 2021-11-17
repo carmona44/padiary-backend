@@ -5,10 +5,6 @@ export enum PlayerPosition {
     DRIVE
 }
 
-registerEnumType(PlayerPosition, {
-    name: 'PlayerPosition',
-});
-
 export enum PlayerLevel {
     PRO,
     PRIMERA,
@@ -18,18 +14,10 @@ export enum PlayerLevel {
     QUINTA
 }
 
-registerEnumType(PlayerLevel, {
-    name: 'PlayerLevel',
-});
-
 export enum PlayerPredominantHand {
     DERECHA,
     IZQUIERDA
 }
-
-registerEnumType(PlayerPredominantHand, {
-    name: 'PlayerPredominantHand',
-});
 
 export enum Country {
     SPAIN,
@@ -41,10 +29,6 @@ export enum Country {
     PORTUGAL
 }
 
-registerEnumType(Country, {
-    name: 'Country',
-});
-
 export enum Shot {
     REVES,
     DERECHA,
@@ -55,6 +39,22 @@ export enum Shot {
     DEJADA,
     SAQUE
 }
+
+registerEnumType(PlayerPosition, {
+    name: 'PlayerPosition',
+});
+
+registerEnumType(PlayerLevel, {
+    name: 'PlayerLevel',
+});
+
+registerEnumType(PlayerPredominantHand, {
+    name: 'PlayerPredominantHand',
+});
+
+registerEnumType(Country, {
+    name: 'Country',
+});
 
 registerEnumType(Shot, {
     name: 'Shot',
