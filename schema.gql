@@ -57,13 +57,26 @@ enum Shot {
   SAQUE
 }
 
+type Match {
+  _id: ID!
+  date: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
   getAllUsers: [User!]!
   getUserById(id: String!): User!
+  getAllMatches: [Match!]!
+  getMatchById(id: String!): Match!
 }
 
 type Mutation {
   addUser(newUserInput: NewUserInput!): User!
+  addMatch(newMatchInput: NewMatchInput!): Match!
 }
 
 input NewUserInput {
@@ -78,4 +91,8 @@ input NewUserInput {
   country: Country!
   region: String!
   bestShot: Shot!
+}
+
+input NewMatchInput {
+  date: DateTime!
 }

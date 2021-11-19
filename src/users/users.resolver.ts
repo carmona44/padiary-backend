@@ -1,6 +1,6 @@
 import { NotFoundException } from "@nestjs/common";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
-import { NewUserInput } from "./dto/new-user.dto";
+import { NewUserInput } from "./dto/new-user-input.dto";
 import { User } from "./users.entity";
 import { UsersService } from "./users.service";
 

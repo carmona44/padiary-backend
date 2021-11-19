@@ -2,7 +2,7 @@ import { Entity, EntityRepositoryType, Enum, PrimaryKey, Property, Unique, wrap 
 import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
 import { ObjectId } from 'bson';
 import { Country, PlayerLevel, PlayerPosition, PlayerPredominantHand, Shot } from './enums';
-import { NewUserInput } from './dto/new-user.dto';
+import { NewUserInput } from './dto/new-user-input.dto';
 import { UserRepository } from './users.repository';
 
 @ObjectType()
@@ -59,6 +59,12 @@ export class User {
     @Field(type => Shot)
     @Enum(() => Shot)
     bestShot: Shot;
+
+    @Property()
+    createdAt: Date = new Date();
+
+    @Property({ onUpdate: () => new Date() })
+    updatedAt: Date = new Date();
 
     constructor(newUserInput: NewUserInput) {
         this.name = newUserInput.name;
