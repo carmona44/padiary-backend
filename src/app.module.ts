@@ -15,7 +15,8 @@ import { UsersModule } from './users/users.module';
       entities: ['dist/**/*.entity.js'],
       entitiesTs: ['src/**/*.entity.ts'],
       dbName: 'padiary',
-      type: 'mongo'
+      type: 'mongo',
+      ensureIndexes: true,
     }),
     UsersModule,
   ],

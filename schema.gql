@@ -6,6 +6,7 @@ type User {
   _id: ID!
   name: String!
   surname: String!
+  username: String!
   age: Int!
   position: PlayerPosition!
   level: PlayerLevel!
@@ -68,6 +69,7 @@ type Mutation {
 input NewUserInput {
   name: String!
   surname: String!
+  username: String!
   age: Float!
   position: PlayerPosition!
   level: PlayerLevel!

@@ -1,7 +1,7 @@
-import { Entity, EntityRepositoryType, Enum, PrimaryKey, Property, wrap } from '@mikro-orm/core';
+import { Entity, EntityRepositoryType, Enum, PrimaryKey, Property, Unique, wrap } from '@mikro-orm/core';
 import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
 import { ObjectId } from 'bson';
-import { Country, PlayerLevel, PlayerPosition, PlayerPredominantHand, Shot } from './constants';
+import { Country, PlayerLevel, PlayerPosition, PlayerPredominantHand, Shot } from './enums';
 import { NewUserInput } from './dto/new-user.dto';
 import { UserRepository } from './users.repository';
 
@@ -22,6 +22,11 @@ export class User {
     @Field()
     @Property()
     surname: string;
+
+    @Field()
+    @Property()
+    @Unique()
+    username: string;
 
     @Field(type => Int)
     @Property()
@@ -59,6 +64,7 @@ export class User {
         this.name = newUserInput.name;
         this.age = newUserInput.age;
         this.surname = newUserInput.surname;
+        this.username = newUserInput.username;
         this.position = newUserInput.position;
         this.level = newUserInput.level;
         this.predominantHand = newUserInput.predominantHand;

@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { Country, PlayerLevel, PlayerPosition, PlayerPredominantHand, Shot } from '../constants';
+import { Country, PlayerLevel, PlayerPosition, PlayerPredominantHand, Shot } from '../enums';
 
 @InputType()
 export class NewUserInput {
@@ -9,6 +9,9 @@ export class NewUserInput {
 
     @Field(type => String)
     surname: string;
+
+    @Field(type => String)
+    username: string;
 
     @Field(() => Number)
     age: number;
