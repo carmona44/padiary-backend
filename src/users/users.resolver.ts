@@ -18,11 +18,11 @@ export class UsersResolver {
 
     @Query(() => User)
     async getUserById(@Args('id') id: string): Promise<User> {
-		const user = await this.usersService.findOneById(id);
-		if (!user) {
-			throw new NotFoundException(id);
-		}
-		return user;
+        const user = await this.usersService.findOneById(id);
+        if (!user) {
+          throw new NotFoundException(id);
+        }
+        return user;
     }
 
     @Mutation(() => User)

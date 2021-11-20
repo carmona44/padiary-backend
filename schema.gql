@@ -15,6 +15,7 @@ type User {
   country: Country!
   region: String!
   bestShot: Shot!
+  matches: [Match!]!
 }
 
 enum PlayerPosition {
@@ -60,6 +61,8 @@ enum Shot {
 type Match {
   _id: ID!
   date: DateTime!
+  place: String!
+  teamA_leftPlayer: User!
 }
 
 """
@@ -95,4 +98,6 @@ input NewUserInput {
 
 input NewMatchInput {
   date: DateTime!
+  place: String!
+  teamA_leftPlayer: String!
 }

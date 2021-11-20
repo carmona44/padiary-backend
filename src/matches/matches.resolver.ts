@@ -8,26 +8,26 @@ import { MatchesService } from "./matches.service";
 export class MatchesResolver {
 
     constructor(
-      	private readonly matchesService: MatchesService,
+        private readonly matchesService: MatchesService,
     ){}
 
     @Query(() => [Match])
     async getAllMatches(): Promise<Match[]> {
-      	return this.matchesService.findAll();
+        return this.matchesService.findAll();
     }
 
     @Query(() => Match)
     async getMatchById(@Args('id') id: string): Promise<Match> {
-		const match = await this.matchesService.findOneById(id);
-		if (!match) {
-			throw new NotFoundException(id);
-		}
-		return match;
+        const match = await this.matchesService.findOneById(id);
+        if (!match) {
+            throw new NotFoundException(id);
+        }
+        return match;
     }
 
     @Mutation(() => Match)
     async addMatch(@Args('newMatchInput') newMatchInput: NewMatchInput): Promise<Match> {
-      	return this.matchesService.create(newMatchInput);
+        return this.matchesService.create(newMatchInput);
     }
 
 }

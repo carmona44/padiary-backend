@@ -1,8 +1,8 @@
-import { Entity, EntityRepositoryType, PrimaryKey, Property, wrap } from '@mikro-orm/core';
+import { Entity, EntityRepositoryType, ManyToOne, PrimaryKey, Property, wrap } from '@mikro-orm/core';
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { ObjectId } from 'bson';
-import { NewMatchInput } from './dto/new-match-input.dto';
 import { MatchRepository } from './matches.repository';
+import { User } from 'src/users/users.entity';
 
 @ObjectType()
 @Entity({ tableName: 'matches' })
@@ -18,14 +18,24 @@ export class Match {
     @Property()
     date: Date;
 
+    @Field(type => String)
+    @Property()
+    place: string;
+
+    @Field(type => User)
+    @ManyToOne()
+    teamA_leftPlayer: User;
+
     @Property()
     createdAt: Date = new Date();
 
     @Property({ onUpdate: () => new Date() })
     updatedAt: Date = new Date();
 
-    constructor(newMatchInput: NewMatchInput) {
-        this.date = newMatchInput.date;
+    constructor(date: Date, place: string, teamA_leftPlayer: User) {
+        this.date = date;
+        this.place = place;
+        this.teamA_leftPlayer = teamA_leftPlayer;
     }
     
     toJSON(match?: Match) {

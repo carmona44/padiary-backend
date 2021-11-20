@@ -1,9 +1,10 @@
-import { Entity, EntityRepositoryType, Enum, PrimaryKey, Property, Unique, wrap } from '@mikro-orm/core';
+import { Collection, Entity, EntityRepositoryType, Enum, OneToMany, PrimaryKey, Property, Unique, wrap } from '@mikro-orm/core';
 import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
 import { ObjectId } from 'bson';
 import { Country, PlayerLevel, PlayerPosition, PlayerPredominantHand, Shot } from './enums';
 import { NewUserInput } from './dto/new-user-input.dto';
 import { UserRepository } from './users.repository';
+import { Match } from 'src/matches/matches.entity';
 
 @ObjectType()
 @Entity({tableName: 'users'})
@@ -59,6 +60,10 @@ export class User {
     @Field(type => Shot)
     @Enum(() => Shot)
     bestShot: Shot;
+
+    @Field(() => [Match])
+    @OneToMany(() => Match, (user) => user.teamA_leftPlayer)
+    matches = new Collection<Match>(this);
 
     @Property()
     createdAt: Date = new Date();
