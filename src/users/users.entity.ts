@@ -77,6 +77,10 @@ export class User {
     @OneToMany({entity: () => Match, mappedBy: 'teamB_rightPlayer'})
     matchesTeamBRight = new Collection<Match>(this);
 
+    @Field(() => [Match])
+    @OneToMany({entity: () => Match, mappedBy: 'mvp'})
+    mvp = new Collection<Match>(this);
+
     @Property()
     createdAt: Date = new Date();
 

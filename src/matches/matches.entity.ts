@@ -38,6 +38,30 @@ export class Match {
     @ManyToOne()
     teamB_rightPlayer: User;
 
+    @Field(type => String)
+    @Property()
+    comments: string;
+
+    @Field(type => Number)
+    @Property()
+    effort: number;
+
+    @Field(type => User)
+    @ManyToOne()
+    mvp: User;
+
+    @Field(type => Number)
+    @Property()
+    duration: number;
+
+    @Field(type => [Number])
+    @Property()
+    teamA_result: number[];
+
+    @Field(type => [Number])
+    @Property()
+    teamB_result: number[];
+
     @Property()
     createdAt: Date = new Date();
 
@@ -46,7 +70,8 @@ export class Match {
 
     constructor(
         date: Date, place: string, teamA_leftPlayer: User, teamA_rightPlayer: User,
-        teamB_leftPlayer: User, teamB_rightPlayer: User
+        teamB_leftPlayer: User, teamB_rightPlayer: User, comments: string, effort: number,
+        mvp: User, duration: number, teamA_result: number[], teamB_result: number[]
     ) {
         this.date = date;
         this.place = place;
@@ -54,6 +79,12 @@ export class Match {
         this.teamA_rightPlayer = teamA_rightPlayer;
         this.teamB_leftPlayer = teamB_leftPlayer;
         this.teamB_rightPlayer = teamB_rightPlayer;
+        this.comments = comments;
+        this.effort = effort;
+        this.mvp = mvp;
+        this.duration = duration;
+        this.teamA_result = teamA_result;
+        this.teamB_result = teamB_result;
     }
     
     toJSON(match?: Match) {

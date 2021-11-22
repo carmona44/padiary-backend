@@ -19,6 +19,7 @@ type User {
   matchesTeamARight: [Match!]!
   matchesTeamBLeft: [Match!]!
   matchesTeamBRight: [Match!]!
+  mvp: [Match!]!
 }
 
 enum PlayerPosition {
@@ -69,6 +70,12 @@ type Match {
   teamA_rightPlayer: User!
   teamB_leftPlayer: User!
   teamB_rightPlayer: User!
+  comments: String!
+  effort: Float!
+  mvp: User!
+  duration: Float!
+  teamA_result: [Float!]!
+  teamB_result: [Float!]!
 }
 
 """
@@ -109,4 +116,10 @@ input NewMatchInput {
   teamA_rightPlayer: String!
   teamB_leftPlayer: String!
   teamB_rightPlayer: String!
+  comments: String!
+  effort: Float!
+  mvp: String!
+  duration: Float!
+  teamA_result: [Float!]!
+  teamB_result: [Float!]!
 }
