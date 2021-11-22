@@ -15,7 +15,10 @@ type User {
   country: Country!
   region: String!
   bestShot: Shot!
-  matches: [Match!]!
+  matchesTeamALeft: [Match!]!
+  matchesTeamARight: [Match!]!
+  matchesTeamBLeft: [Match!]!
+  matchesTeamBRight: [Match!]!
 }
 
 enum PlayerPosition {
@@ -63,6 +66,9 @@ type Match {
   date: DateTime!
   place: String!
   teamA_leftPlayer: User!
+  teamA_rightPlayer: User!
+  teamB_leftPlayer: User!
+  teamB_rightPlayer: User!
 }
 
 """
@@ -100,4 +106,7 @@ input NewMatchInput {
   date: DateTime!
   place: String!
   teamA_leftPlayer: String!
+  teamA_rightPlayer: String!
+  teamB_leftPlayer: String!
+  teamB_rightPlayer: String!
 }

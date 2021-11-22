@@ -15,7 +15,7 @@ export class UsersService {
     }
 
     async findOneById(id: string, populate?: any[]): Promise<User> { 
-        return this.userRepository.findOne(id, populate);
+        return this.userRepository.findOne(id, ['matchesTeamALeft', 'matchesTeamARight', 'matchesTeamBLeft', 'matchesTeamBRight']);
     }
 
     async create(newUserInput: NewUserInput): Promise<User> {   

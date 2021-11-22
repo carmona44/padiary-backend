@@ -62,8 +62,20 @@ export class User {
     bestShot: Shot;
 
     @Field(() => [Match])
-    @OneToMany(() => Match, (user) => user.teamA_leftPlayer)
-    matches = new Collection<Match>(this);
+    @OneToMany({entity: () => Match, mappedBy: 'teamA_leftPlayer'})
+    matchesTeamALeft = new Collection<Match>(this);
+
+    @Field(() => [Match])
+    @OneToMany({entity: () => Match, mappedBy: 'teamA_rightPlayer'})
+    matchesTeamARight = new Collection<Match>(this);
+
+    @Field(() => [Match])
+    @OneToMany({entity: () => Match, mappedBy: 'teamB_leftPlayer'})
+    matchesTeamBLeft = new Collection<Match>(this);
+
+    @Field(() => [Match])
+    @OneToMany({entity: () => Match, mappedBy: 'teamB_rightPlayer'})
+    matchesTeamBRight = new Collection<Match>(this);
 
     @Property()
     createdAt: Date = new Date();
