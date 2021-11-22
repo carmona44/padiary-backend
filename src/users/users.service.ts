@@ -10,12 +10,12 @@ export class UsersService {
         private readonly userRepository: UserRepository,
     ) {}
 
-    async findAll(): Promise<User[]> { 
-        return this.userRepository.findAll();
+    async findAll(populate?: any[]): Promise<User[]> { 
+        return this.userRepository.findAll(populate);
     }
 
     async findOneById(id: string, populate?: any[]): Promise<User> { 
-        return this.userRepository.findOne(id, ['matchesTeamALeft', 'matchesTeamARight', 'matchesTeamBLeft', 'matchesTeamBRight']);
+        return this.userRepository.findOne(id, populate);
     }
 
     async create(newUserInput: NewUserInput): Promise<User> {   

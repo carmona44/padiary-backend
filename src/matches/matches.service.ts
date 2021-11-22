@@ -12,12 +12,12 @@ export class MatchesService {
         private readonly userRepository: UserRepository,
     ) {}
 
-    async findAll(): Promise<Match[]> { 
-        return this.matchRepository.findAll();
+    async findAll(populate?: any[]): Promise<Match[]> { 
+        return this.matchRepository.findAll(populate);
     }
 
-    async findOneById(id: string): Promise<Match> { 
-        return this.matchRepository.findOne(id);
+    async findOneById(id: string, populate?: any[]): Promise<Match> { 
+        return this.matchRepository.findOne(id, populate);
     }
 
     async create(newMatchInput: NewMatchInput): Promise<Match> {   
@@ -25,7 +25,7 @@ export class MatchesService {
         const teamA_rightPlayer = await this.userRepository.findOneOrFail(newMatchInput.teamA_rightPlayer);
         const teamB_leftPlayer = await this.userRepository.findOneOrFail(newMatchInput.teamB_leftPlayer);
         const teamB_rightPlayer = await this.userRepository.findOneOrFail(newMatchInput.teamB_rightPlayer);
-        
+
         const newMatch = new Match(newMatchInput.date, newMatchInput.place, teamA_leftPlayer, teamA_rightPlayer, teamB_leftPlayer, teamB_rightPlayer);
         await this.matchRepository.persistAndFlush(newMatch);
         return newMatch;
