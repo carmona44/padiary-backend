@@ -2,7 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
+type Player {
   _id: ID!
   name: String!
   surname: String!
@@ -66,13 +66,13 @@ type Match {
   _id: ID!
   date: DateTime!
   place: String!
-  teamA_leftPlayer: User!
-  teamA_rightPlayer: User!
-  teamB_leftPlayer: User!
-  teamB_rightPlayer: User!
+  teamA_leftPlayer: Player!
+  teamA_rightPlayer: Player!
+  teamB_leftPlayer: Player!
+  teamB_rightPlayer: Player!
   comments: String!
   effort: Float!
-  mvp: User!
+  mvp: Player!
   duration: Float!
   teamA_result: [Float!]!
   teamB_result: [Float!]!
@@ -84,18 +84,18 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Query {
-  getAllUsers: [User!]!
-  getUserById(id: String!): User!
+  getAllPlayers: [Player!]!
+  getPlayerById(id: String!): Player!
   getAllMatches: [Match!]!
   getMatchById(id: String!): Match!
 }
 
 type Mutation {
-  addUser(newUserInput: NewUserInput!): User!
+  addPlayer(newPlayerInput: NewPlayerInput!): Player!
   addMatch(newMatchInput: NewMatchInput!): Match!
 }
 
-input NewUserInput {
+input NewPlayerInput {
   name: String!
   surname: String!
   username: String!

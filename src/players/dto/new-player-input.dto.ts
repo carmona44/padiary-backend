@@ -2,7 +2,7 @@ import { Field, InputType } from '@nestjs/graphql';
 import { Country, PlayerLevel, PlayerPosition, PlayerPredominantHand, Shot } from '../enums';
 
 @InputType()
-export class NewUserInput {
+export class NewPlayerInput {
 
     @Field(type => String)
     name: string;

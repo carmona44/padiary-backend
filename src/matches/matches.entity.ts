@@ -2,7 +2,7 @@ import { Entity, EntityRepositoryType, ManyToOne, PrimaryKey, Property, wrap } f
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { ObjectId } from 'bson';
 import { MatchRepository } from './matches.repository';
-import { User } from 'src/users/users.entity';
+import { Player } from 'src/players/players.entity';
 
 @ObjectType()
 @Entity({ tableName: 'matches' })
@@ -22,21 +22,21 @@ export class Match {
     @Property()
     place: string;
 
-    @Field(type => User)
+    @Field(type => Player)
     @ManyToOne()
-    teamA_leftPlayer: User;
+    teamA_leftPlayer: Player;
 
-    @Field(type => User)
+    @Field(type => Player)
     @ManyToOne()
-    teamA_rightPlayer: User;
+    teamA_rightPlayer: Player;
 
-    @Field(type => User)
+    @Field(type => Player)
     @ManyToOne()
-    teamB_leftPlayer: User;
+    teamB_leftPlayer: Player;
 
-    @Field(type => User)
+    @Field(type => Player)
     @ManyToOne()
-    teamB_rightPlayer: User;
+    teamB_rightPlayer: Player;
 
     @Field(type => String)
     @Property()
@@ -46,9 +46,9 @@ export class Match {
     @Property()
     effort: number;
 
-    @Field(type => User)
+    @Field(type => Player)
     @ManyToOne()
-    mvp: User;
+    mvp: Player;
 
     @Field(type => Number)
     @Property()
@@ -69,9 +69,9 @@ export class Match {
     updatedAt: Date = new Date();
 
     constructor(
-        date: Date, place: string, teamA_leftPlayer: User, teamA_rightPlayer: User,
-        teamB_leftPlayer: User, teamB_rightPlayer: User, comments: string, effort: number,
-        mvp: User, duration: number, teamA_result: number[], teamB_result: number[]
+        date: Date, place: string, teamA_leftPlayer: Player, teamA_rightPlayer: Player,
+        teamB_leftPlayer: Player, teamB_rightPlayer: Player, comments: string, effort: number,
+        mvp: Player, duration: number, teamA_result: number[], teamB_result: number[]
     ) {
         this.date = date;
         this.place = place;

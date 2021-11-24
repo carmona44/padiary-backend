@@ -2,15 +2,15 @@ import { Collection, Entity, EntityRepositoryType, Enum, OneToMany, PrimaryKey, 
 import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
 import { ObjectId } from 'bson';
 import { Country, PlayerLevel, PlayerPosition, PlayerPredominantHand, Shot } from './enums';
-import { NewUserInput } from './dto/new-user-input.dto';
-import { UserRepository } from './users.repository';
+import { NewPlayerInput } from './dto/new-player-input.dto';
+import { PlayerRepository } from './players.repository';
 import { Match } from 'src/matches/matches.entity';
 
 @ObjectType()
-@Entity({tableName: 'users'})
-export class User {
+@Entity({tableName: 'players'})
+export class Player {
 
-    [EntityRepositoryType]?: UserRepository;
+    [EntityRepositoryType]?: PlayerRepository;
 
     @Field(type => ID)
     @PrimaryKey()
@@ -87,21 +87,21 @@ export class User {
     @Property({ onUpdate: () => new Date() })
     updatedAt: Date = new Date();
 
-    constructor(newUserInput: NewUserInput) {
-        this.name = newUserInput.name;
-        this.age = newUserInput.age;
-        this.surname = newUserInput.surname;
-        this.username = newUserInput.username;
-        this.position = newUserInput.position;
-        this.level = newUserInput.level;
-        this.predominantHand = newUserInput.predominantHand;
-        this.picture = newUserInput.picture;
-        this.country = newUserInput.country;
-        this.region = newUserInput.region;
-        this.bestShot = newUserInput.bestShot;
+    constructor(newPlayerInput: NewPlayerInput) {
+        this.name = newPlayerInput.name;
+        this.age = newPlayerInput.age;
+        this.surname = newPlayerInput.surname;
+        this.username = newPlayerInput.username;
+        this.position = newPlayerInput.position;
+        this.level = newPlayerInput.level;
+        this.predominantHand = newPlayerInput.predominantHand;
+        this.picture = newPlayerInput.picture;
+        this.country = newPlayerInput.country;
+        this.region = newPlayerInput.region;
+        this.bestShot = newPlayerInput.bestShot;
     }
     
-    toJSON(user?: User) {
+    toJSON(player?: Player) {
         const o = wrap(this).toObject();
         return o;
     }
